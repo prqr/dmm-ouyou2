@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     @users = User.all
     @book = Book.new
   end
-    
-  
-      
+
+
+
   def followings
 		user = User.find(params[:id])
 		@users = user.followings
@@ -36,6 +36,9 @@ class UsersController < ApplicationController
       render "edit"
     end
   end
+
+
+
 
   private
   def user_params

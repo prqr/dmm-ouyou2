@@ -26,7 +26,23 @@ class User < ApplicationRecord
 
   def following?(user)
     followings.include?(user)
+
   end
 
+
+  def self.list(content,method)
+	     if method == "forward_match"
+	     	return self.where("name LIKE?","#{content}%")
+	     elsif method == "backward_match"
+	     	return self.where("name LIKE?","%#{content}")
+	     elsif method == "perfect_match"
+	      return 	self.where(name: "#{content}")
+	      
+	     elsif method == "partial_match"
+	     	return self.where("name LIKE?","%#{content}%")
+	     else
+	     	return self.all
+	     end
+  end
 
 end
